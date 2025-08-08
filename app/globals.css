@@ -3,11 +3,31 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --brand: #fa7275;
+  --brand-100: #fb8e91;
+  --light-100: #9ca3af;
+  --light-200: #e5e7eb;
+  --light-300: #f3f4f6;
+  --light-400: #f9fafb;
+  --dark-200: #1f2937;
+  --error: #ef4444;
+  --red: #dc2626;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-100: var(--brand-100);
+  --color-light-100: var(--light-100);
+  --color-light-200: var(--light-200);
+  --color-light-300: var(--light-300);
+  --color-light-400: var(--light-400);
+  --color-dark-200: var(--dark-200);
+  --color-error: var(--error);
+  --color-red: var(--red);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,5 +42,41 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+/* === Scrollbar styles === */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+  border-radius: 50px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-light-200);
+  border-radius: 50px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand);
+}
+
+/* Remove scrollbar */
+.remove-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.remove-scrollbar::-webkit-scrollbar-track,
+.remove-scrollbar::-webkit-scrollbar-thumb,
+.remove-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Recharts Fix */
+.recharts-responsive-container {
+  height: initial !important;
 }
