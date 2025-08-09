@@ -236,9 +236,23 @@ body {
   font-size: 30px;
   line-height: 38px;
   font-weight: 600;
-  color: var(--dark-200);
+  color: #111827;
   margin-bottom: 32px;
-  text-align: center;
+  text-align: left;
+}
+
+.shad-form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.shad-form-label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--dark-200);
 }
 
 .shad-label {
@@ -268,11 +282,18 @@ body {
   color: var(--light-100);
 }
 
+.shad-form-message {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--error);
+  margin-top: 4px;
+}
+
 .form-submit-button {
   width: 100%;
   background: var(--brand);
   color: white;
-  border-radius: 8px;
+  border-radius: 24px;
   padding: 12px 24px;
   font-size: 16px;
   line-height: 24px;
@@ -282,6 +303,9 @@ body {
   transition: all 0.2s;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-submit-button:hover:not(:disabled) {
@@ -291,6 +315,14 @@ body {
 .form-submit-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: 16px;
 }
 
 .dark {
