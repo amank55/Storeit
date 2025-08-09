@@ -224,6 +224,75 @@ body {
   justify-content: center;
 }
 
+/* ===== AUTH FORM STYLES */
+.auth-form {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.form-title {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  color: var(--dark-200);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.shad-label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--dark-200);
+}
+
+.shad-input {
+  background: var(--light-400);
+  border: 1px solid var(--light-200);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--dark-200);
+  transition: all 0.2s;
+}
+
+.shad-input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(250, 114, 117, 0.1);
+}
+
+.shad-input::placeholder {
+  color: var(--light-100);
+}
+
+.form-submit-button {
+  width: 100%;
+  background: var(--brand);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.form-submit-button:hover:not(:disabled) {
+  background: var(--brand-100);
+}
+
+.form-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .dark {
 
   --background: oklch(0.145 0 0);
