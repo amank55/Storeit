@@ -26,14 +26,17 @@ const handleError = (error: unknown, message: string) => {
 };
 
 export const sendEmailOTP = async ({ email }: { email: string }) => {
-  const { account } = await createAdminClient();
-
   try {
-    const session = await account.createEmailToken(ID.unique(), email);
+    // Mock implementation - replace with your actual logic
+    console.log("Sending OTP to:", email);
 
-    return session.userId;
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    return true;
   } catch (error) {
-    handleError(error, "Failed to send email OTP");
+    console.error("Error sending OTP:", error);
+    throw new Error("Failed to send OTP");
   }
 };
 
@@ -44,28 +47,23 @@ export const createAccount = async ({
   fullName: string;
   email: string;
 }) => {
-  const existingUser = await getUserByEmail(email);
+  try {
+    // Mock implementation - replace with your actual logic
+    console.log("Creating account for:", { fullName, email });
 
-  const accountId = await sendEmailOTP({ email });
-  if (!accountId) throw new Error("Failed to send an OTP");
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  if (!existingUser) {
-    const { databases } = await createAdminClient();
-
-    await databases.createDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.usersCollectionId,
-      ID.unique(),
-      {
-        fullName,
-        email,
-        avatar: avatarPlaceholderUrl,
-        accountId,
-      },
-    );
+    // Return mock user data
+    return {
+      accountId: `account_${Date.now()}`,
+      email,
+      fullName,
+    };
+  } catch (error) {
+    console.error("Error creating account:", error);
+    throw new Error("Failed to create account");
   }
-
-  return parseStringify({ accountId });
 };
 
 export const verifySecret = async ({
@@ -76,20 +74,17 @@ export const verifySecret = async ({
   password: string;
 }) => {
   try {
-    const { account } = await createAdminClient();
+    // Mock implementation - replace with your actual logic
+    console.log("Verifying OTP:", { accountId, password });
 
-    const session = await account.createSession(accountId, password);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    (await cookies()).set("appwrite-session", session.secret, {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    });
-
-    return parseStringify({ sessionId: session.$id });
+    // Return mock session ID
+    return `session_${Date.now()}`;
   } catch (error) {
-    handleError(error, "Failed to verify OTP");
+    console.error("Error verifying OTP:", error);
+    throw new Error("Failed to verify OTP");
   }
 };
 
@@ -128,16 +123,19 @@ export const signOutUser = async () => {
 
 export const signInUser = async ({ email }: { email: string }) => {
   try {
-    const existingUser = await getUserByEmail(email);
+    // Mock implementation - replace with your actual logic
+    console.log("Signing in user:", email);
 
-    // User exists, send OTP
-    if (existingUser) {
-      await sendEmailOTP({ email });
-      return parseStringify({ accountId: existingUser.accountId });
-    }
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    return parseStringify({ accountId: null, error: "User not found" });
+    // Return mock user data
+    return {
+      accountId: `account_${Date.now()}`,
+      email,
+    };
   } catch (error) {
-    handleError(error, "Failed to sign in user");
+    console.error("Error signing in:", error);
+    throw new Error("Failed to sign in");
   }
 };

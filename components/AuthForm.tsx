@@ -17,8 +17,8 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { createAccount,signInUser } from "@/lib/actions/users.action";
-import OtpModal from "./otpmodal";
+import { createAccount, signInUser } from "@/lib/actions/user.action";
+import OtpModal from "@/components/OTPModal";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -35,7 +35,7 @@ const authFormSchema = (formType: FormType) => {
 const AuthForm = ({ type }: { type: FormType }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [accountId, setAccountId] = useState(null);
+  const [accountId, setAccountId] = useState<string | null>(null);
 
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -81,11 +81,11 @@ const AuthForm = ({ type }: { type: FormType }) => {
               render={({ field }) => (
                 <FormItem>
                   <div className="shad-form-item">
-                    <FormLabel className="shad-form-label">Full Name</FormLabel>
+                    <FormLabel className="shad-form-label-dark">Full Name</FormLabel>
 
                     <FormControl>
                       <Input
-                        placeholder="Enter your full name"
+                        placeholder="Enter full name"
                         className="shad-input"
                         {...field}
                       />
