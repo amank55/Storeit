@@ -27,16 +27,16 @@ const handleError = (error: unknown, message: string) => {
 
 export const sendEmailOTP = async ({ email }: { email: string }) => {
   try {
-    // Mock implementation - replace with your actual logic
-    console.log("Sending OTP to:", email);
+    const { account } = await createAdminClient();
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const session = await account.createEmailToken(
+      ID.unique(),
+      email
+    );
 
-    return true;
+    return session.userId;
   } catch (error) {
-    console.error("Error sending OTP:", error);
-    throw new Error("Failed to send OTP");
+    handleError(error, "Failed to send OTP");
   }
 };
 
